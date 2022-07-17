@@ -1,12 +1,13 @@
 import { createCamera } from './components/camera'
 import { createCube, cubeTick } from './components/cube'
 import { createScene } from './components/scene'
-import { createLights } from './components/lights.js'
-
-import { createControls } from './systems/controls.js'
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/Resizer'
 import { Loop } from './systems/Loop'
+import { createLights } from './components/lights.js'
+import { createControls } from './systems/controls.js'
+import { loadBirds } from './components/model.js'
+import './components/model.js'
 
 // These variables are module-scoped: we can not access them
 // from outside the module
@@ -20,15 +21,15 @@ class World {
 
     const controls = createControls(camera, renderer.domElement)
 
-    const cube = createCube()
+    // const cube = createCube()
     const light = createLights()
 
     loop = new Loop(camera, scene, renderer)
 
-    loop.updatables.push(cubeTick)
+    // loop.updatables.push(cubeTick)
 
     // Add childern/scene objects to the scene
-    scene.add(cube, light.ambientLight, light.mainLight)
+    scene.add(light.ambientLight, light.mainLight)
 
     const resizer = new Resizer(camera, renderer, sizes)
   }
@@ -44,6 +45,12 @@ class World {
 
   stop() {
     loop.stop()
+  }
+
+  async init() {
+    // asynchronous setup here
+    // load bird models
+    await loadBirds()
   }
 }
 

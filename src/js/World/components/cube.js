@@ -1,5 +1,5 @@
 import { BoxBufferGeometry, Mesh, MeshStandardMaterial, TextureLoader } from 'three'
-import textureBW from '../../../Assets/textures/uv-test-bw.png'
+// import textureBW from './textures/uv-test-bw.png'
 
 let box
 // Move 30degrees per second
@@ -12,10 +12,10 @@ const SPEC = {
 function createMaterial() {
   const textureLoader = new TextureLoader()
 
-  const texture = textureLoader.load(textureBW)
+  // const texture = textureLoader.load(textureBW)
 
   const material = new MeshStandardMaterial({
-    map: texture,
+    // map: texture,
   })
 
   return material
